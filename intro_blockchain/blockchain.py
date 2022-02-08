@@ -24,13 +24,13 @@ class BlockChain:
         print('inititate')
         self.chain = list()
         genesis_block = self._create_block(data="genesis",proof=1,previous_hash="0",index=0)
-        print(genesis_block)
+        # print(genesis_block)
         self.chain.append(genesis_block)
-        print(self.chain)
+        # print(self.chain)
 
     def mine_block(self,data:str)->dict:
         previous_block = self.get_previous_block()
-        print(previous_block)
+        # print(previous_block)
         previous_proof = previous_block['proof']
         index          = previous_block['index'] + 1
         proof          = self._proof_of_work(previous_proof,index,data)
@@ -53,7 +53,7 @@ class BlockChain:
         check_proof = False
 
         while not check_proof:
-            print(new_proof)
+            # print(new_proof)
             to_digest = self._to_digest(new_proof=new_proof,previous_proof=previous_proof,index=index,data=data)
             has_value = _hashlib.sha256(to_digest).hexdigest()
 
@@ -64,11 +64,11 @@ class BlockChain:
         return new_proof
 
     def get_previous_block(self)->dict:
-        print(self.chain)
+        # print(self.chain)
         return self.chain[-1]
 
     def _create_block(self,data:str,proof:int,previous_hash:str,index:int) -> dict:
-        print('created')
+        # print('created')
         block = {
             "index":index,
             "timestamp": str(_dt.datetime.now()),
