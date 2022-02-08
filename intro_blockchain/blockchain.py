@@ -32,7 +32,7 @@ class BlockChain:
         previous_block = self.get_previous_block()
         print(previous_block)
         previous_proof = previous_block['proof']
-        index          = len(self.chain) + 1
+        index          = previous_block['index'] + 1
         proof          = self._proof_of_work(previous_proof,index,data)
         previous_hash  = self._hash(block=previous_block)
         block          = self._create_block(data=data,proof=proof,previous_hash=previous_hash,index=index)
@@ -77,3 +77,23 @@ class BlockChain:
             "previous_hash":previous_hash
         }
         return block
+
+    def is_chain_valid(self) -> bool:
+        
+        block_index     =   1
+        current_block   =   self.chain[0]
+
+        while block_index < len(self.chain):
+            next_block = self.chain[block_index]
+            if next_block['previous_hash'] != self._hash(current_block):
+                return False
+            
+            previous_proof = current_block['proof']
+            next_index,next_data,next_proof = next_block['index'],next_block['data'],next_block['proof']
+            hash_value = _hashlib.sha256(self._to_digest(new_proof=next_proof,previous_proof=previous_proof,index=next_index,data=next_data)).hexdigest()
+            if hash_value[:4] != "0000":
+                return False 
+            block_index += 1
+            current_block = next_block
+        return True
+
