@@ -1,9 +1,8 @@
 import datetime as _dt
 import hashlib as _hash
 import json
-from urllib import response
+# from urllib import response
 import requests
-from uuid import uuid4
 from urllib.parse import urlparse
 
 
