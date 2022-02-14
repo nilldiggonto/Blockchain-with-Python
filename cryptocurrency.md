@@ -47,6 +47,39 @@
 
 * 51% attack
     * Hash Rate Attack not a hacker
-    
 
+ ------------------------
+
+* Transactions & UTXOS(unspent transaction output)
+    * When transaction have to spent all of it
+    * Transactions fees is a way to faster confirmation of transaction
+
+* Wallet
+    * Count total UTXOS
+
+* Signatures
+    * Private & Public Keys
+    * Every Transaction has a signature.
+    * To verify signature , one needs the public key of that private key
+
+* Segregated Witness
+    * Problems:
+        * For better transaction Block must be less than 
+        * Bigger sized block will slow the network
+        * Signature key with the transaction data can make a bigger size of block
+    * Solution:
+        * Send Signature(Witness) seperately
+
+* Public keys VS Bitcoin address
+    * Bitcoin address derive from the public key(sha256)
+
+* Hierarchically Deterministic (HD) Wallets
+    * Master Private Key
+    * Generate private key from master key
+    * Generate public key from private key
+
+    * Master Public key from master private key
+        * It can  verify all the public key
+
+     
     
