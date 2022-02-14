@@ -23,7 +23,7 @@ async def mineBlock():
 
 @app.get('/chains')
 async def chain_list():
-    return _blockchain.chain
+    return {'chain':_blockchain.chain,'length':len(_blockchain.chain)}
 
 @app.get('/valid')
 async def is_valid():
